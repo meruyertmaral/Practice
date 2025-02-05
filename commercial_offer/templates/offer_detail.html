@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Коммерческое предложение</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Коммерческое предложение</h1>
+        <p><span class="highlight">ПОСТАВЩИК:</span> TOO "Conti-new Corporation"</p>
+        <p>Данное коммерческое предложение носит исключительно информационный характер и не резервирует товары</p>
+        <h2>КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ ОТ {{ offer.offer_date }}</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Наименование товара</th>
+                    <th>Цена за единицу (тенге)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in offer.items %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <p>Сроки поставки: <strong>30 календарных дней после подписания договора.</strong></p>
+            <p>Гарантия: В соответствии с условиями производителя.</p>
+            <p>Будем рады сотрудничеству!</p>
+            <p>С уважением,</p>
+            <p><strong>TOO "Conti-new Corporation"</strong></p>
+            <p>Руководитель</p>
+        </div>
+    </div>
+</body>
+</html>
