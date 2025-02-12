@@ -1,69 +1,86 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="kk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создать коммерческое предложение</title>
+    <title>Жаңа ұсыныс жасау</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
         }
-        .container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 25px;
+        .offer-container {
+            background: white;
+            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            width: 400px;
-            text-align: center;
-        }
-        h1 {
-            font-size: 1.8em;
-            color: #333;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        input, textarea {
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 8px;
-            background: #f4f4f4;
-            font-size: 1em;
         }
-        button {
-            background: #ff5f6d;
-            background: linear-gradient(135deg, #ff5f6d, #ffc371);
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .btn-back {
+            background: #6c757d;
             color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
         }
-        button:hover {
-            background: linear-gradient(135deg, #ff416c, #ff4b2b);
-            transform: scale(1.05);
+        .btn-back:hover {
+            background: #5a6268;
+        }
+        .btn-submit {
+            background: #28a745;
+            color: white;
+        }
+        .btn-submit:hover {
+            background: #218838;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Создать коммерческое предложение</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Сохранить предложение</button>
-        </form>
-    </div>
+
+<div class="offer-container">
+    <h2>✨ Жаңа ұсыныс жасау ✨</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Client:</label>
+            <select class="form-select">
+                <option>--------</option>
+                {% for client in clients %}
+                    <option>{{ client.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Таңдаулы тауар:</label>
+            <select class="form-select">
+                <option>Тауарды таңдаңыз</option>
+                {% for product in products %}
+                    <option>{{ product.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Quantity:</label>
+            <input type="number" class="form-control" placeholder="Саны">
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'home' %}" class="btn btn-back">⬅ Артқа</a>
+            <button type="submit" class="btn btn-submit">✅ Ұсыныс жасау</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
